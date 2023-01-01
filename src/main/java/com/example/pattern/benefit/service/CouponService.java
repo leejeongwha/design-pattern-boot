@@ -4,17 +4,17 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CouponService implements Runnable {
-    private String threadName;
+    private CouponApiService couponApiService;
 
-    public CouponService(String threadName) {
-        this.threadName = threadName;
+    public CouponService(CouponApiService couponApiService) {
+        this.couponApiService = couponApiService;
     }
 
     @Override
     public void run() {
-        log.info(Thread.currentThread().getName() + "의 " + threadName + "이 시작되었습니다.");
+        String couponId = couponApiService.callApi();
         sleepThread();
-        log.info(Thread.currentThread().getName() + "가 종료되었습니다");
+        log.info(couponId + " 쿠폰 발송 완료");
     }
 
     private void sleepThread() {

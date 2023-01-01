@@ -13,12 +13,14 @@ class CouponServiceTest {
         CountDownLatch latch = new CountDownLatch(numberOfThreads);
         //ExecutorService 객체가 Invoker를 의미
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
-        for (int i = 1; i <= 10; i++) {
-            //Runnable 객체가 Command를 의미
-            //BenefitService 객체가 Receiver를 의미
-            Runnable doThread = new CouponService("CouponThread" + i);
-            executorService.execute(doThread);
-            latch.countDown();
+        for (int i = 0; i < numberOfThreads; i++) {
+            //Runnable 구현 객체가 Command를 의미
+            //CouponApiService 객체가 Receiver를 의미
+            Runnable doThread = new CouponService(new CouponApiService());
+            executorService.execute(() -> {
+                doThread.run();
+                latch.countDown();
+            });
         }
         latch.await();
     }
