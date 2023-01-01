@@ -1,7 +1,5 @@
 package com.example.pattern.kiosk.visit;
 
-import com.example.pattern.kiosk.visit.benefit.DisCountBenefit;
-import com.example.pattern.kiosk.visit.benefit.PointBenefit;
 import org.junit.jupiter.api.Test;
 
 class BenefitTest {
@@ -13,8 +11,16 @@ class BenefitTest {
         goldMember.discount();
 
         //방문자 패턴을 적용한 코드
-        Member silverMember = new SilverMember();
-        silverMember.getBenefit(new DisCountBenefit());
-        silverMember.getBenefit(new PointBenefit());
+//        Member silverMember = new SilverMember();
+//        silverMember.getBenefit(new DisCountBenefit());
+//        silverMember.getBenefit(new PointBenefit());
+//
+//        Member goldMember = new GoldMember();
+//        goldMember.getBenefit(new DisCountBenefit());
+//        silverMember.getBenefit(new PointBenefit());
+//
+//        VIPMember vipMember = new VIPMember();
+//        vipMember.getBenefit(new DisCountBenefit());
+//        vipMember.getBenefit(new PointBenefit());
     }
 }
