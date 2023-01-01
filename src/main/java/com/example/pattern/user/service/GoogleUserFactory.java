@@ -12,6 +12,6 @@ public class GoogleUserFactory implements OAuthUserFactory {
     public OauthUser getUser(String token) {
         log.info("google OAuth api 호출");
         log.info("name : {}, id : {}", "래리 페이지", "test");
-        return new GoogleUser("래리 페이지", "test@gmail.com");
+        return new GoogleUser("래리 페이지", "test");
     }
 }

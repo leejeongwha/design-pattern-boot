@@ -47,7 +47,7 @@ public class DeliveryService {
     private final VehicleServiceFactory vehicleServiceFactory;
 
     /**
-     * 생성에 대한 책임을 Facgory 클래스로 위임하여 강하게 결합되어 있는 부분을 제거
+     * 생성에 대한 책임을 Factory 클래스로 위임하여 강하게 결합되어 있는 부분을 제거
      *
      * @param order
      */

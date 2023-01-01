@@ -36,8 +36,8 @@ public class FlyWeightPatternTest {
         Assertions.assertSame(integer1, integer2);
 
 
-        Integer integer3 = Integer.valueOf("322");
-        Integer integer4 = Integer.valueOf("322");
+        Integer integer3 = Integer.valueOf("128");
+        Integer integer4 = Integer.valueOf("128");
 
         // 서로 다르다!
         Assertions.assertNotSame(integer3, integer4);

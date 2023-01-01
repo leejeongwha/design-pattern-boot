@@ -23,8 +23,8 @@ public class MemberController {
     public Member enroll(String snsType, String token) {
         Member member = memberService.saveMember(snsType, token);
 
-        member.setSnsType("kakao");
-        memberService.emptyLogic();
+        //member.setSnsType("kakao");
+        //memberService.emptyLogic();
         return member;
     }
 }

@@ -27,12 +27,13 @@ public class OrderService {
         Optional<Member> findMember = memberRepository.findById(order.getMemberId());
         Member member = null;
         if (!findMember.isPresent()) {
-            member = new Member(1L, "비회원주문", "test@email.com", null, null, null);
+            member = new Member(1L, "비회원주문", "test@email.com", null, "010-123-4567", "123-456-1234567");
         }
 
         // 결제
-        //paymentService.setPaymentMethod(new PhoneMethodService());
         paymentService.pay(order.getAmount(), member);
+        //paymentService.setPaymentMethod(new CardMethodService());
+        //paymentService.pay1(order.getAmount(), member);
 
         // 배송
         deliveryService.deliver(order);

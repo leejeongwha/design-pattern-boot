@@ -7,7 +7,7 @@ class BookCompositeTest {
     void 리스트_출력_테스트() {
         BookShelf shelf1 = new BookShelf("1");
         BookShelf shelf11 = new BookShelf("1-1");
-        BookShelf shelf22 = new BookShelf("1-2");
+        BookShelf shelf12 = new BookShelf("1-2");
         Book book1 = new Book("마음의온도");
         Book book2 = new Book("헤드퍼스트디자인패턴");
         Book book3 = new Book("이펙티브자바");
@@ -18,10 +18,10 @@ class BookCompositeTest {
         shelf11.add(book2);
         shelf11.add(book3);
 
-        shelf22.add(book4);
+        shelf12.add(book4);
 
         shelf1.add(shelf11);
-        shelf1.add(shelf22);
+        shelf1.add(shelf12);
 
         shelf1.PrintList("");
     }
