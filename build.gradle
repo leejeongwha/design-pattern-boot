@@ -14,6 +14,13 @@ configurations {
     }
 }
 
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -33,9 +40,6 @@ dependencies {
 
     // model mapper
     implementation 'org.modelmapper:modelmapper:3.1.0'
-    // 아래는 jcenter.bintray.com 으로 리다이렉트 되어서 수동으로 추가한 것들
-    implementation 'org.springframework:spring-jcl:6.0.3'
-    implementation 'org.apache.httpcomponents:httpcore:4.4.16'
 }
 
 tasks.named('test') {
