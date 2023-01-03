@@ -5,7 +5,7 @@ COPY build.gradle .
 COPY settings.gradle .
 COPY src src
 RUN chmod +x ./gradlew
-RUN ./gradlew bootJAR
+RUN ./gradlew bootJAR -i --stacktrace
 
 FROM openjdk:17-alpine
 COPY --from=builder build/libs/*.jar app.jar
