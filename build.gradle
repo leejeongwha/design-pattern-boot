@@ -14,14 +14,8 @@ configurations {
     }
 }
 
-pluginManagement {
-    repositories {
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
 repositories {
+    gradlePluginPortal()
     mavenCentral()
 }
 
