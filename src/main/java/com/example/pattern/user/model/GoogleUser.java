@@ -10,6 +10,6 @@ public class GoogleUser implements OauthUser {
 
     @Override
     public Member getMember() {
-        return new Member(null, name, id + "@gmail.com", "google", null, null);
+        return new Member(null, name, id + "@gmail.com", "google", null, "111-222-333333");
     }
 }

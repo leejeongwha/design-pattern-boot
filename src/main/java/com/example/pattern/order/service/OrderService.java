@@ -25,22 +25,23 @@ public class OrderService {
 
     public void order(Order order) {
         Optional<Member> findMember = memberRepository.findById(order.getMemberId());
-        Member member = null;
-        if (!findMember.isPresent()) {
-            member = new Member(1L, "비회원주문", "test@email.com", null, "010-123-4567", "123-456-1234567");
-        }
+        Member member = findMember.orElse(new Member(1L, "비회원주문", "test@email.com", null, "010-123-4567", "123-456-1234567"));
 
         // 결제
         paymentService.pay(order.getAmount(), member);
-        //paymentService.setPaymentMethod(new CardMethodService());
-        //paymentService.pay1(order.getAmount(), member);
+//        if (StringUtils.isNotEmpty(member.getAccountNumber())) {
+//            paymentService.setPaymentMethod(new CardMethodService());
+//        } else if (StringUtils.isNotEmpty(member.getPhoneNumber())) {
+//            paymentService.setPaymentMethod(new PhoneMethodService());
+//        }
+//        paymentService.pay1(order.getAmount(), member);
 
         // 배송
         deliveryService.deliver(order);
 
         // 알림
         MailSolutionA.MailParam mailParam = MailSolutionA.MailParam.builder().title("배송이 시작되었습니다.")
-                .body("mail body").email("test@nhn.com").build();
+            .body("mail body").email("test@nhn.com").build();
         mailSenderA.send(mailParam);
     }
 }
