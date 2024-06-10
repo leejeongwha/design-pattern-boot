@@ -1,5 +1,6 @@
-package com.example.election;
+package com.example.election.service;
 
+import com.example.election.Stock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
