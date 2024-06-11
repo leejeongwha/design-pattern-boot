@@ -1,8 +1,6 @@
 package com.example.election.controller;
 
-import com.example.election.Stock;
-import com.example.election.model.RedisMessage;
-import com.example.election.service.RedisPubService;
+import com.example.election.model.SseMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -22,10 +20,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @RequiredArgsConstructor
 @RequestMapping("/election")
 public class SseController {
-    private final RedisPubService redisPubService;
     private final List<SseEmitter> clients = new CopyOnWriteArrayList<>();
 
-    @GetMapping(value = "/emitter", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @GetMapping(value = "/state", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public SseEmitter connect() {
         SseEmitter sseEmitter = new SseEmitter();
         clients.add(sseEmitter);
@@ -36,20 +33,14 @@ public class SseController {
         return sseEmitter;
     }
 
-    @GetMapping(value = "/send")
-    public String send() {
-        redisPubService.sendMessage(new RedisMessage("123", "test"));
-        return "OK";
-    }
-
     @Async
     @EventListener
-    public void stockMessageHandler(Stock stock) {
+    public void stockMessageHandler(SseMessage sseMessage) {
         List<SseEmitter> errorEmitters = new ArrayList<>();
 
         clients.forEach(emitter -> {
             try {
-                emitter.send("현재의 value값은 +" + stock.getValue() + " 입니다.", MediaType.TEXT_PLAIN);
+                emitter.send(sseMessage.getMessage(), MediaType.TEXT_PLAIN);
             } catch (Exception e) {
                 errorEmitters.add(emitter);
             }

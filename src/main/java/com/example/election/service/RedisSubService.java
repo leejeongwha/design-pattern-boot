@@ -25,9 +25,9 @@ public class RedisSubService implements MessageListener {
             RedisMessage redisMessage = mapper.readValue(message.getBody(), RedisMessage.class);
             messageList.add(message.toString());
 
-            System.out.println("받은 메시지 = " + message.toString());
-            System.out.println("chatMessage.getSender() = " + redisMessage.getSender());
-            System.out.println("chatMessage.getContext() = " + redisMessage.getContext());
+            log.info("받은 메시지 = " + message.toString());
+            log.info("chatMessage.getSender() = " + redisMessage.getSender());
+            log.info("chatMessage.getMessage() = " + redisMessage.getMessage());
         } catch (IOException e) {
             log.error("Redis Subscribe Error", e);
         }

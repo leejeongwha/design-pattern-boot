@@ -31,6 +31,9 @@ spring:
   jackson:
     serialization:
       indent-output: true
+  mvc:
+    async:
+      request-timeout: -1
 
 logging:
   level:
