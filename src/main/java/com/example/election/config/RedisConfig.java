@@ -2,6 +2,7 @@ package com.example.election.config;
 
 import com.example.election.model.RedisMessage;
 import com.example.election.service.RedisSubService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -15,6 +16,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
 public class RedisConfig {
+    public static final String TOPIC = "topic1";
+
+    @Autowired
+    private RedisSubService redisSubService;
+
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         return new LettuceConnectionFactory();
@@ -33,7 +39,7 @@ public class RedisConfig {
     //리스너어댑터 설정
     @Bean
     MessageListenerAdapter messageListenerAdapter() {
-        return new MessageListenerAdapter(new RedisSubService());
+        return new MessageListenerAdapter(redisSubService);
     }
 
     //컨테이너 설정
@@ -48,6 +54,6 @@ public class RedisConfig {
     //pub/sub 토픽 설정
     @Bean
     ChannelTopic topic() {
-        return new ChannelTopic("topic1");
+        return new ChannelTopic(TOPIC);
     }
 }

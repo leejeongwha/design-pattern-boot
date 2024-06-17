@@ -1,7 +1,7 @@
 package com.example.election.service;
 
+import com.example.election.model.PaxosState;
 import com.example.election.model.SseMessage;
-import com.example.election.model.State;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +23,8 @@ public class SseService {
     private int serverPort;
 
     @Scheduled(fixedRate = 3000)
-    private void changePrice() throws Exception {
+    private void publishEvent() throws Exception {
         log.info("{} publishEvent 발생", serverPort);
-        SseMessage sseMessage = new SseMessage();
-        sseMessage.setMessage(objectMapper.writeValueAsString(Map.of("node", serverPort, "state", State.state)));
-        publisher.publishEvent(sseMessage);
+        publisher.publishEvent(new SseMessage(objectMapper.writeValueAsString(Map.of("node", serverPort, "state", PaxosState.state))));
     }
 }

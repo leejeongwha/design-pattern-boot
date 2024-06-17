@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RedisMessage {
     private String sender;
-    private String message;
+    private String type;
+    private Object message;
 }
