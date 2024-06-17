@@ -29,7 +29,7 @@ public class PaxosController {
         PaxosState.Proposer.proposalNumber++;
         Long acceptorCnt = redisPubService.sendMessage(new RedisMessage(serverPort + "", "Prepare", mapper.writeValueAsString(Map.of("proposalNumber", PaxosState.Proposer.proposalNumber))));
         if (acceptorCnt > 0) {
-            // Phase 3: Accept(Propose)
+            // Phase 3: Accept(Proposal)
             Thread.sleep(1000);
             acceptorCnt = redisPubService.sendMessage(new RedisMessage(serverPort + "", "Accept", mapper.writeValueAsString(new PaxosState.Proposal(PaxosState.Proposer.proposalNumber, value))));
         }

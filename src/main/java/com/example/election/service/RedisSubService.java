@@ -29,14 +29,14 @@ public class RedisSubService implements MessageListener {
 
         try {
             RedisMessage redisMessage = mapper.readValue(message.getBody(), RedisMessage.class);
+            Map receivedMessage = mapper.readValue(redisMessage.getMessage().toString(), Map.class);
 
             log.info("chatMessage.getSender() = " + redisMessage.getSender());
-            Map receivedMessage = mapper.readValue(redisMessage.getMessage().toString(), Map.class);
             log.info("chatMessage.getMessage() = " + receivedMessage);
 
             if ("Prepare".equals(redisMessage.getType())) {
                 proposalNumber = (Integer) receivedMessage.get("proposalNumber");
-                if (proposalNumber > PaxosState.Acceptor.promiseId) {
+                if (proposalNumber >= PaxosState.Acceptor.promiseId) {
                     // Phase 2: Promise
                     PaxosState.Acceptor.promiseId = proposalNumber;
                     msg = "[Promise] 수락자들로부터 Promise 응답이 도착 했습니다, 제안 번호 : " + proposalNumber;
@@ -46,9 +46,9 @@ public class RedisSubService implements MessageListener {
                 proposalNumber = (Integer) receivedMessage.get("proposalNumber");
                 value = (String) receivedMessage.get("value");
                 if (proposalNumber >= PaxosState.Acceptor.promiseId) {
+                    // Phase 4 : Accepted
                     PaxosState.Acceptor.promiseId = proposalNumber;
                     PaxosState.Acceptor.acceptedProposal = new PaxosState.Proposal(proposalNumber, value);
-                    // Phase 4 : Accepted
                     PaxosState.state = value;
                     msg = "[Accepted] 수락자들이 전달된 Proposal을 반영 하였습니다. : " + PaxosState.Acceptor.acceptedProposal;
                     publisher.publishEvent(new SseMessage(mapper.writeValueAsString(Map.of("event", msg))));
