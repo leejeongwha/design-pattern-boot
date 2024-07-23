@@ -34,19 +34,19 @@ public class RedisSubService implements MessageListener {
             log.info("chatMessage.getSender() = " + redisMessage.getSender());
             log.info("chatMessage.getMessage() = " + receivedMessage);
 
+            // Phase 2: Promise
             if ("Prepare".equals(redisMessage.getType())) {
                 proposalNumber = (Integer) receivedMessage.get("proposalNumber");
                 if (proposalNumber >= PaxosState.Acceptor.promiseId) {
-                    // Phase 2: Promise
                     PaxosState.Acceptor.promiseId = proposalNumber;
                     msg = "[Promise] 수락자들로부터 Promise 응답이 도착 했습니다, 제안 번호 : " + proposalNumber;
                     publisher.publishEvent(new SseMessage(mapper.writeValueAsString(Map.of("event", msg))));
                 }
             } else if ("Accept".equals(redisMessage.getType())) {
+                // Phase 4 : Accepted
                 proposalNumber = (Integer) receivedMessage.get("proposalNumber");
                 value = (String) receivedMessage.get("value");
                 if (proposalNumber >= PaxosState.Acceptor.promiseId) {
-                    // Phase 4 : Accepted
                     PaxosState.Acceptor.promiseId = proposalNumber;
                     PaxosState.Acceptor.acceptedProposal = new PaxosState.Proposal(proposalNumber, value);
                     PaxosState.state = value;

@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @Data
 public class PaxosState {
-    // Leaner의 상태 값
+    // Learner의 상태 값
     public static String state = "foo";
 
     public static class Acceptor {

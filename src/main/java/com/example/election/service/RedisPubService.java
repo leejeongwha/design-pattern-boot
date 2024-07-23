@@ -31,12 +31,12 @@ public class RedisPubService {
 
         if (redisMessage.getType().equals("Prepare")) {
             proposalNumber = (Integer) receivedMessage.get("proposalNumber");
-            msg = "[Prepare] 새로운 제안 번호가 발행 되었습니다, 제안 번호 : " + proposalNumber;
+            msg = "[Prepare] 제안자가 Prepare 요청을 발송합니다, 제안 번호 : " + proposalNumber;
             publisher.publishEvent(new SseMessage(mapper.writeValueAsString(Map.of("event", msg))));
         } else if (redisMessage.getType().equals("Accept")) {
             proposalNumber = (Integer) receivedMessage.get("proposalNumber");
             value = (String) receivedMessage.get("value");
-            msg = "[Accept] 이벤트가 발행 되었습니다, 제안 번호 : " + proposalNumber + ", 최신 값 : " + value;
+            msg = "[Accept] 제안자가 Accept 요청을 Proposal과 함께 발송 합니다, 제안 번호 : " + proposalNumber + ", 최신 값 : " + value;
             publisher.publishEvent(new SseMessage(mapper.writeValueAsString(Map.of("event", msg))));
         }
         return sendCnt;
