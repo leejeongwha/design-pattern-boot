@@ -4,4 +4,5 @@ import com.example.pattern.user.entity.Member;
 
 public interface OauthUser {
     Member getMember();
+    String getProviderName();
 }

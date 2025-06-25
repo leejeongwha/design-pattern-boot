@@ -1,36 +1,47 @@
 package com.example.pattern.user.service;
 
-import com.example.pattern.user.entity.Member;
-import com.example.pattern.user.model.OauthUser;
-import com.example.pattern.user.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Map;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Map;
+import com.example.pattern.user.entity.Member;
+import com.example.pattern.user.model.OAuthProfile;
+import com.example.pattern.user.model.OauthUser;
+import com.example.pattern.user.repository.MemberRepository;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class MemberService {
-    private final Map<String, OAuthUserFactory> oAuthUserFactory;
+    private final Map<String, OAuthAbstractFactory> oAuthFactories;
     private final MemberRepository memberRepository;
 
     @Transactional
     public Member saveMember(String snsType, String token) {
-        OauthUser oauthUser = switch (snsType) {
-            case "google" -> oAuthUserFactory.get("googleUserFactory").getUser(token);
-            case "facebook" -> oAuthUserFactory.get("facebookUserFactory").getUser(token);
+        OAuthAbstractFactory factory = switch (snsType) {
+            case "google" -> oAuthFactories.get("googleOAuthFactory");
+            case "facebook" -> oAuthFactories.get("facebookOAuthFactory");
             default -> throw new IllegalArgumentException("존재하지 않는 snsType 입니다.");
         };
+
+        // Abstract Factory 패턴: 관련된 여러 제품들을 함께 생성
+        OAuthProfile profile = factory.createProfile(token);
+        OauthUser oauthUser = factory.createUser(token);
+
+        // 프로필 정보 로깅
+        log.info("프로필 정보 - 이름: {}, 이메일: {}, 이미지: {}", 
+                profile.getDisplayName(), profile.getEmail(), profile.getProfileImage());
 
         Member member = oauthUser.getMember();
         Member save = memberRepository.save(member);
         log.info("새로운 멤버가 생성되었습니다 : " + save.toString());
 
-//        ModelMapper modelMapper = new ModelMapper();
-//        MemberDto map = modelMapper.map(save, MemberDto.class);
+        // ModelMapper modelMapper = new ModelMapper();
+        // MemberDto map = modelMapper.map(save, MemberDto.class);
 
         return save;
     }
