@@ -1,11 +1,12 @@
 package com.example.pattern.payment.service;
 
-import com.example.pattern.user.entity.Member;
-
 import java.math.BigInteger;
 
-public interface PaymentMethod {
-    boolean checkValid(Member member);
+import com.example.pattern.user.entity.Member;
 
-    void pay(BigInteger amount, Member member);
+// Bridge 패턴의 구현 계층 인터페이스
+public interface PaymentMethod {
+    boolean validatePayment(Member member);
+    void processPayment(BigInteger amount, Member member);
+    String getPaymentType();
 }

@@ -1,5 +1,10 @@
 package com.example.pattern.order.service;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.example.pattern.delivery.service.DeliveryService;
 import com.example.pattern.mail.service.MailSenderA;
 import com.example.pattern.mail.service.MailSolutionA;
@@ -7,10 +12,6 @@ import com.example.pattern.order.entity.Order;
 import com.example.pattern.payment.service.PaymentService;
 import com.example.pattern.user.entity.Member;
 import com.example.pattern.user.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -29,12 +30,7 @@ public class OrderService {
 
         // 결제
         paymentService.pay(order.getAmount(), member);
-//        if (StringUtils.isNotEmpty(member.getAccountNumber())) {
-//            paymentService.setPaymentMethod(new CardMethodService());
-//        } else if (StringUtils.isNotEmpty(member.getPhoneNumber())) {
-//            paymentService.setPaymentMethod(new PhoneMethodService());
-//        }
-//        paymentService.pay1(order.getAmount(), member);
+        //paymentService.processPayment("offline", order.getAmount(), member);
 
         // 배송
         deliveryService.deliver(order);
