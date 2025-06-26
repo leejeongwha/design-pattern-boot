@@ -9,7 +9,7 @@ class SingletonServiceTest {
         SingletonService singletonService1 = SingletonService.getInstance();
         SingletonService singletonService2 = SingletonService.getInstance();
 
-        //참조값이 같은 것을 확인
+        //해시코드가 같은 것을 확인
         System.out.println("singletonService1 = " + singletonService1);
         System.out.println("singletonService2 = " + singletonService2);
 
