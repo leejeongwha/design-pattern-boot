@@ -1,9 +1,10 @@
 package com.example.pattern.config;
 
-import com.example.pattern.config.filter.MemberCheckFilter;
-import com.example.pattern.config.filter.UserAgentCheckFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Configuration;
+
+import com.example.pattern.config.filter.MemberCheckFilter;
+import com.example.pattern.config.filter.UserAgentCheckFilter;
 
 @Configuration
 public class FilterConfig {

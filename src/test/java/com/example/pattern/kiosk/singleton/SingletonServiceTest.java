@@ -1,6 +1,5 @@
 package com.example.pattern.kiosk.singleton;
 
-import com.example.pattern.kiosk.singleton.SingletonService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

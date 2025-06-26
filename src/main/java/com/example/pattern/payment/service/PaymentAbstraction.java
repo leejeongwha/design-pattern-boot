@@ -8,7 +8,7 @@ import com.example.pattern.user.entity.Member;
 public abstract class PaymentAbstraction {
     protected PaymentMethod paymentMethod;
 
-    public PaymentAbstraction(PaymentMethod paymentMethod) {
+    protected PaymentAbstraction(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 

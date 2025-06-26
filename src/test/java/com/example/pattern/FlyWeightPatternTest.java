@@ -3,7 +3,7 @@ package com.example.pattern;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FlyWeightPatternTest {
+class FlyWeightPatternTest {
     @Test
     void 스트링_플라이웨이트패턴_테스트() {
         String str1 = "Hello";

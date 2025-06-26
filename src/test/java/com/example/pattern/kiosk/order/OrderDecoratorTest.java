@@ -1,12 +1,8 @@
 package com.example.pattern.kiosk.order;
 
-import com.example.pattern.kiosk.order.Alarm;
-import com.example.pattern.kiosk.order.Delivery;
-import com.example.pattern.kiosk.order.Order;
-import com.example.pattern.kiosk.order.OrderImpl;
-import com.example.pattern.kiosk.order.Payment;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class OrderDecoratorTest {

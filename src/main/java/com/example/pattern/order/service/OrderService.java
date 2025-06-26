@@ -2,7 +2,6 @@ package com.example.pattern.order.service;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.pattern.delivery.service.DeliveryService;
@@ -13,16 +12,15 @@ import com.example.pattern.payment.service.PaymentService;
 import com.example.pattern.user.entity.Member;
 import com.example.pattern.user.repository.MemberRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class OrderService {
-    @Autowired
-    private DeliveryService deliveryService;
-    @Autowired
-    private MailSenderA mailSenderA;
-    @Autowired
-    private MemberRepository memberRepository;
-    @Autowired
-    private PaymentService paymentService;
+    private final DeliveryService deliveryService;
+    private final MailSenderA mailSenderA;
+    private final MemberRepository memberRepository;
+    private final PaymentService paymentService;
 
     public void order(Order order) {
         Optional<Member> findMember = memberRepository.findById(order.getMemberId());

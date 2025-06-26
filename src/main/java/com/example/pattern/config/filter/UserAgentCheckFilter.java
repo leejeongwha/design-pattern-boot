@@ -1,5 +1,7 @@
 package com.example.pattern.config.filter;
 
+import java.io.IOException;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -9,12 +11,11 @@ import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
 @Slf4j
 public class UserAgentCheckFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // nothing
     }
 
     @Override
@@ -29,5 +30,6 @@ public class UserAgentCheckFilter implements Filter {
 
     @Override
     public void destroy() {
+        // nothing
     }
 }

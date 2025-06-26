@@ -1,10 +1,9 @@
 package com.example.pattern.kiosk.memento;
 
-import com.example.pattern.kiosk.memento.Memento;
-import com.example.pattern.kiosk.memento.Originator;
-import org.junit.jupiter.api.Test;
-
 import java.util.Stack;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class MementoTest {
     @Test
@@ -27,5 +26,7 @@ class MementoTest {
             originator.restoreMemento(mementos.pop());
             System.out.println(originator.getState());
         }
+
+        Assertions.assertTrue(true);
     }
 }

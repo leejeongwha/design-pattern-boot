@@ -1,5 +1,7 @@
 package com.example.pattern.config.filter;
 
+import java.io.IOException;
+
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
@@ -9,12 +11,11 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
 @Slf4j
 public class MemberCheckFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+        // nothing
     }
 
     @Override
@@ -29,5 +30,6 @@ public class MemberCheckFilter implements Filter {
 
     @Override
     public void destroy() {
+        // nothing
     }
 }

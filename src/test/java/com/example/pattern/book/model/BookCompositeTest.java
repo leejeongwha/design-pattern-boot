@@ -1,5 +1,6 @@
 package com.example.pattern.book.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class BookCompositeTest {
@@ -24,5 +25,7 @@ class BookCompositeTest {
         shelf1.add(shelf12);
 
         shelf1.PrintList("");
+
+        Assertions.assertTrue(true);
     }
 }

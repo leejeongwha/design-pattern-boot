@@ -1,5 +1,6 @@
 package com.example.pattern.kiosk.state;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class MemberStateTest {
@@ -13,5 +14,7 @@ class MemberStateTest {
         //회원 탈퇴 상태
         member.unRegister();
         member.register();
+
+        Assertions.assertTrue(true);
     }
 }

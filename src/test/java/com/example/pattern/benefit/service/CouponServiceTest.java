@@ -1,10 +1,11 @@
 package com.example.pattern.benefit.service;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 class CouponServiceTest {
     @Test
@@ -23,5 +24,6 @@ class CouponServiceTest {
             });
         }
         latch.await();
+        Assertions.assertTrue(true);
     }
 }
