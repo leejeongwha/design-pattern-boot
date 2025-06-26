@@ -24,7 +24,7 @@ class BookCompositeTest {
         shelf1.add(shelf11);
         shelf1.add(shelf12);
 
-        shelf1.PrintList("");
+        shelf1.printList("");
 
         Assertions.assertTrue(true);
     }
