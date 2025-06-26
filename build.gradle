@@ -38,4 +38,11 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+    
+    // 테스트 실행 시 표준 출력 캡처
+    testLogging {
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+        exceptionFormat = 'full'
+    }
 }
