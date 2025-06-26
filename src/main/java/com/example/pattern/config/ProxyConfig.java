@@ -1,15 +1,13 @@
 package com.example.pattern.config;
 
-import com.example.pattern.order.service.OrderService;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.objenesis.SpringObjenesis;
+
+import com.example.pattern.order.service.OrderService;
 
 @Configuration
 public class ProxyConfig {
-    private final SpringObjenesis objenesis = new SpringObjenesis();
-
     //    @Bean
 //    @Primary
     public OrderService orderServiceProxy() {

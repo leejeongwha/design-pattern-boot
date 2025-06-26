@@ -1,11 +1,13 @@
 package com.example.pattern.benefit.service;
 
-import com.example.pattern.benefit.service.model.BenefitItem;
-import jakarta.annotation.PostConstruct;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Iterator;
+
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
+import com.example.pattern.benefit.service.model.BenefitItem;
+
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
@@ -33,7 +35,7 @@ public class CouponMenu {
         add("생일쿠폰", "생일쿠폰", 5000);
     }
 
-    public Iterator createIterator() {
+    public Iterator<BenefitItem> createIterator() {
         return new CouponIterator(coupons);
     }
 }

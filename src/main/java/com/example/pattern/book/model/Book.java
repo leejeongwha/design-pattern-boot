@@ -12,7 +12,8 @@ public class Book extends BookComposite {
         throw new IllegalArgumentException("책에는 하위 객체를 추가할 수 없습니다");
     }
 
-    public void PrintList(String path) {
+    @Override
+    public void printList(String path) {
         log.info(path + "/" + this.getName());
     }
 }

@@ -15,10 +15,11 @@ public class BookShelf extends BookComposite {
         compositeList.add(entry);
     }
 
-    public void PrintList(String path) {      //목록을 보여줍니다.
+    @Override
+    public void printList(String path) {      //목록을 보여줍니다.
         path += "/" + this.getName();
         for (BookComposite bookComposite : compositeList) {
-            bookComposite.PrintList(path);
+            bookComposite.printList(path);
         }
     }
 }

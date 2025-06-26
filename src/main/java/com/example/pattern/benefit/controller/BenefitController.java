@@ -1,16 +1,18 @@
 package com.example.pattern.benefit.controller;
 
-import com.example.pattern.benefit.service.CouponMenu;
-import com.example.pattern.benefit.service.PointCardMenu;
-import com.example.pattern.benefit.service.model.BenefitItem;
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import com.example.pattern.benefit.service.CouponMenu;
+import com.example.pattern.benefit.service.PointCardMenu;
+import com.example.pattern.benefit.service.model.BenefitItem;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("benefits")
@@ -41,10 +43,10 @@ public class BenefitController {
         return result;
     }
 
-    private List<BenefitItem> addItem(Iterator iterator) {
+    private List<BenefitItem> addItem(Iterator<BenefitItem> iterator) {
         List<BenefitItem> result = new ArrayList<>();
         while (iterator.hasNext()) {
-            BenefitItem item = (BenefitItem) iterator.next();
+            BenefitItem item = iterator.next();
             result.add(item);
         }
         return result;

@@ -3,7 +3,7 @@ package com.example.pattern.book.model;
 public abstract class BookComposite {
     private final String name;
 
-    public BookComposite(final String name) {
+    protected BookComposite(final String name) {
         this.name = name;
     }
 
@@ -13,5 +13,5 @@ public abstract class BookComposite {
 
     public abstract void add(BookComposite composite);
 
-    public abstract void PrintList(String path);
+    public abstract void printList(String path);
 }

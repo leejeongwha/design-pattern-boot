@@ -10,16 +10,16 @@ import com.example.pattern.config.filter.UserAgentCheckFilter;
 public class FilterConfig {
     //    @Bean
 //    @Order(0)
-    public FilterRegistrationBean userAgentCheckFilter() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new UserAgentCheckFilter());
+    public FilterRegistrationBean<UserAgentCheckFilter> userAgentCheckFilter() {
+        FilterRegistrationBean<UserAgentCheckFilter> registrationBean = new FilterRegistrationBean<>(new UserAgentCheckFilter());
         registrationBean.addUrlPatterns("/orders/*");
         return registrationBean;
     }
 
     //    @Bean
 //    @Order(1)
-    public FilterRegistrationBean memberCheckFilter() {
-        FilterRegistrationBean registrationBean = new FilterRegistrationBean(new MemberCheckFilter());
+    public FilterRegistrationBean<MemberCheckFilter> memberCheckFilter() {
+        FilterRegistrationBean<MemberCheckFilter> registrationBean = new FilterRegistrationBean<>(new MemberCheckFilter());
         registrationBean.addUrlPatterns("/orders/*");
         return registrationBean;
     }
