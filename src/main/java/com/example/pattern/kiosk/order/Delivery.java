@@ -15,6 +15,6 @@ public class Delivery extends OrderDecorator {
     }
 
     private void delivery() {
-        log.info("배송 방법이 추가되었습니다.");
+        log.info("배송 기능이 추가되었습니다.");
     }
 }
