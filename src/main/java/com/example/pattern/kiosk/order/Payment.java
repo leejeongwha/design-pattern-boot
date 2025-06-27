@@ -15,6 +15,6 @@ public class Payment extends OrderDecorator {
     }
 
     private void pay() {
-        log.info("결제 기능이 추가되었습니다.");
+        log.info("결제를 진행합니다");
     }
 }

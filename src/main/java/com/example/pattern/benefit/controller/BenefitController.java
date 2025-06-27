@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.pattern.benefit.service.CouponMenu;
-import com.example.pattern.benefit.service.PointCardMenu;
+import com.example.pattern.benefit.service.CouponItems;
+import com.example.pattern.benefit.service.PointCardItems;
 import com.example.pattern.benefit.service.model.BenefitItem;
 
 import lombok.RequiredArgsConstructor;
@@ -18,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("benefits")
 @RequiredArgsConstructor
 public class BenefitController {
-    private final CouponMenu couponMenu;
-    private final PointCardMenu pointCardMenu;
+    private final CouponItems couponMenu;
+    private final PointCardItems pointCardMenu;
 
     /**
      * http://localhost:9000/benefits
@@ -28,27 +28,18 @@ public class BenefitController {
      */
     @GetMapping
     public List<BenefitItem> benefits() {
-//        List<BenefitItem> result = new ArrayList<>();
-//
-//        BenefitItem[] coupons = couponMenu.getItems();
-//        List<BenefitItem> pointCards = pointCardMenu.getItems();
-//
-//        result.addAll(pointCards);
-//        result.addAll(Arrays.asList(coupons));
-
         List<BenefitItem> result = new ArrayList<>();
-        result.addAll(addItem(couponMenu.createIterator()));
-        result.addAll(addItem(pointCardMenu.getItems().iterator()));
-
+        
+        // 반복자 패턴을 사용하여 모든 혜택을 수집
+        collectBenefits(couponMenu.createIterator(), result);
+        collectBenefits(pointCardMenu.createIterator(), result);
+        
         return result;
     }
 
-    private List<BenefitItem> addItem(Iterator<BenefitItem> iterator) {
-        List<BenefitItem> result = new ArrayList<>();
+    private void collectBenefits(Iterator<BenefitItem> iterator, List<BenefitItem> result) {
         while (iterator.hasNext()) {
-            BenefitItem item = iterator.next();
-            result.add(item);
+            result.add(iterator.next());
         }
-        return result;
     }
 }

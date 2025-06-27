@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class CouponMenu {
+public class CouponItems {
     private BenefitItem[] coupons = new BenefitItem[10];
     private int position = 0;
 
