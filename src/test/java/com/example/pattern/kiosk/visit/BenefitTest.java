@@ -1,8 +1,11 @@
 package com.example.pattern.kiosk.visit;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import com.example.pattern.kiosk.visit.benefit.Benefit;
 import com.example.pattern.kiosk.visit.benefit.DisCountBenefit;
 import com.example.pattern.kiosk.visit.benefit.PointBenefit;
 
@@ -26,17 +29,16 @@ class BenefitTest {
      */
     @Test
     void 방문자_패턴_테스트() {
-        Member silverMember = new SilverMember();
-        silverMember.getBenefit(new DisCountBenefit());
-        silverMember.getBenefit(new PointBenefit());
+        // 멤버들과 혜택들 생성
+        List<Member> members = List.of(new SilverMember(), new GoldMember(), new VIPMember());
+        List<Benefit> benefits = List.of(new DisCountBenefit(), new PointBenefit());
 
-        Member goldMember = new GoldMember();
-        goldMember.getBenefit(new DisCountBenefit());
-        goldMember.getBenefit(new PointBenefit());
-
-        Member vipMember = new VIPMember();
-        vipMember.getBenefit(new DisCountBenefit());
-        vipMember.getBenefit(new PointBenefit());
+        // 모든 멤버에게 모든 혜택 적용
+        for (Member member : members) {
+            for (Benefit benefit : benefits) {
+                member.getBenefit(benefit);
+            }
+        }
 
         Assertions.assertTrue(true);
     }
