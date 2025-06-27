@@ -11,7 +11,7 @@ import com.example.pattern.benefit.service.model.BenefitItem;
 import jakarta.annotation.PostConstruct;
 
 @Service
-public class PointCardItems {
+public class PointCardItems implements BenefitAggregate {
     private List<BenefitItem> items = new ArrayList<>();
 
 
