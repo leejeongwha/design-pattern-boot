@@ -10,20 +10,20 @@ class MementoTest {
     void 메멘토_테스트() {
         Originator originator = new Originator();
         //Stack 자료구조를 CareTaker클래스로 대체
-        Stack<Memento> mementos = new Stack<>();
+        Stack<Memento> careTaker = new Stack<>();
 
         originator.setState("A");
-        mementos.push(originator.createMemento());
+        careTaker.push(originator.createMemento());
         originator.setState(originator.getState() + "B");
-        mementos.push(originator.createMemento());
+        careTaker.push(originator.createMemento());
         originator.setState(originator.getState() + "C");
-        mementos.push(originator.createMemento());
+        careTaker.push(originator.createMemento());
         originator.setState(originator.getState() + "D");
-        mementos.push(originator.createMemento());
+        careTaker.push(originator.createMemento());
 
-        while (!mementos.isEmpty()) {
+        while (!careTaker.isEmpty()) {
             //이전 상태로 복구
-            originator.restoreMemento(mementos.pop());
+            originator.restoreMemento(careTaker.pop());
             System.out.println(originator.getState());
         }
 
